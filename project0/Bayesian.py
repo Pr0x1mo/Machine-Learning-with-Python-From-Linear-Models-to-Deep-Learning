@@ -26,3 +26,21 @@ def bic(X: np.ndarray, mixture: GaussianMixture,
     
     return bic
     
+def bic(X: np.ndarray, mixture: GaussianMixture,
+        log_likelihood: float) -> float:
+    """Computes the Bayesian Information Criterion for a
+    mixture of gaussians
+
+    Args:
+        X: (n, d) array holding the data
+        mixture: a mixture of spherical gaussian
+        log_likelihood: the log-likelihood of the data
+
+    Returns:
+        float: the BIC for this mixture
+    """
+    # Instructor's solution:
+    n, _ = X.shape
+    K, d = mixture.mu.shape
+
+    return log_likelihood - (K * d + K + K - 1) / 2 * np.log(n)
